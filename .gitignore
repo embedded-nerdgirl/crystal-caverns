@@ -1,1 +1,13 @@
+# Directories
 /target
+.vscode/
+.vs/
+.idea/
+
+# Per-user files
+Cargo.lock
+
+# Temporary files
+*.log
+*.temp
+*.tmp

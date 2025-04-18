@@ -1,5 +1,9 @@
+// External crates
 use raylib::prelude::*;
 use rfd::MessageDialogResult;
+
+// Local modules
+mod player;
 
 fn raise_error(title: &str, message: &str) {
     let result = rfd::MessageDialog::new()
@@ -17,15 +21,31 @@ fn raise_error(title: &str, message: &str) {
         MessageDialogResult::Ok => {
             std::process::exit(1);
         }
+        
         MessageDialogResult::Cancel => {
-            eprintln!("");
             std::process::exit(1);
         }
     }
 }
 
 fn check_internal_lua_health() -> bool {
-    return false;
+    let internal_path = "assets/scripts";
+    let internal_files = vec![
+        "init.lua"
+    ];
+
+    if !std::path::Path::new(internal_path).exists() {
+        return false;
+    }
+
+    for file in internal_files {
+        let full_path = format!("{}/{}", internal_path, file);
+        if !std::path::Path::new(&full_path).exists() {
+            return false;
+        }
+    }
+
+    true
 }
 
 fn check_for_external_mods() -> bool {
@@ -43,8 +63,9 @@ fn main() {
     rl.set_target_fps(60);
 
     // Subsystems init (player, items, NPCs, misc...)
+
     if !check_internal_lua_health() {
-        raise_error("Lua Internal Fatal Error", "LuaInternal files are misssing or damaged and must be reinstalled. Please refer to Steam Game Validation for assistance.");
+        raise_error("Lua Internal Fatal Error", "LuaInternal files are misssing or damaged and must be reinstalled. Please refer to the README for assistance.");
     }
 
     if !check_for_external_mods() {
