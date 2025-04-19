@@ -16,5 +16,3 @@ This is the *official* repository for Crystal Caverns, it's a game! Right now, t
 > [**mlua**](https://crates.io/crates/mlua) - High level bindings to Lua 5.1->5.4 + LuaJIT
 
 # How to build
-
-...a
