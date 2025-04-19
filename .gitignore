@@ -3,9 +3,11 @@
 .vscode/
 .vs/
 .idea/
+bin/
 
 # Per-user files
 Cargo.lock
+.DS_Store
 
 # Temporary files
 *.log

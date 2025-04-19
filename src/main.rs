@@ -17,9 +17,9 @@ fn main() {
     rl.set_target_fps(90);
 
     // Subsystems init (player, items, NPCs, misc...)
-    let mut hero = player::Player::new(Vector2::new(400.0, 300.0), 120.0, 32.0, Color::RED, ("no").to_string());
+    let mut hero = player::Player::new(Vector2::new(400.0, 300.0), 120.0, 32.0, Color::RED, ("assets/sprites/hero.png").to_string());
 
-    if utils::check_internal_lua_health() {
+    if !utils::check_internal_lua_health() {
         utils::raise_error("Lua Internal Fatal Error", "LuaInternal files are misssing or damaged and must be reinstalled. Please refer to the README for assistance.");
     }
 
